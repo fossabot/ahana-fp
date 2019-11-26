@@ -1,9 +1,9 @@
 {
   "name": "@ahanapediatrics/ahana-fp",
-  "version": "1.0.8",
+  "version": "1.0.7",
   "description": "FP-friendly classes for Typescript",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "private": false,
   "scripts": {
     "build": "tsc",
@@ -28,7 +28,7 @@
     "typescript": "^3.7.2"
   },
   "files": [
-    "dist/**/*"
+    "lib/**/*"
   ],
   "config": {
     "commitizen": {
