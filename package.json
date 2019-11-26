@@ -13,7 +13,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha  --opts test/mocha.opts"
   },
   "keywords": [
     "FP",
@@ -22,8 +22,13 @@
   "author": "Dan Rumney <dan.rumney@ahanapediatrics.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
     "cz-conventional-changelog": "^3.0.2",
     "git-cz": "^3.3.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
   },
