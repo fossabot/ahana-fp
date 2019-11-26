@@ -1,9 +1,10 @@
 {
-  "name": "ahana-fp",
+  "name": "@ahanapediatrics/ahana-fp",
   "version": "1.0.0",
   "description": "FP-friendly classes for Typescript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "private": false,
   "scripts": {
     "build": "tsc",
     "lint": "tslint -p tsconfig.json",
@@ -20,10 +21,17 @@
   "author": "Dan Rumney <dan.rumney@ahanapediatrics.com>",
   "license": "MIT",
   "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
+    "git-cz": "^3.3.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
