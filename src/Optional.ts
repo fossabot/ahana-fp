@@ -194,10 +194,11 @@ export class Optional<T> {
    * empty Optionals.
    *
    * @param val
+   * @param [isEqual] - an optional function for comparing equality
    */
-  equals(val: Optional<T>) {
+  equals(val: Optional<T>, isEqual: (a:T,b:T)=> boolean = (a,b) => a===b) {
     if (this.isPresent() && val.isPresent()) {
-      return val.get() === this.get();
+      return isEqual(val.get(),this.get());
     }
     return false;
   }

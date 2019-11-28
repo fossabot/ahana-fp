@@ -1,4 +1,4 @@
-import {Optional} from './Optional';
+import {Either, Optional} from '.';
 
 export enum RemoteDataStatus {
   'NotAsked',
@@ -9,11 +9,14 @@ export enum RemoteDataStatus {
 
 /**
  * This class represents data from a remote source that takes time to load.
+ *
+ * It can be single-valued or an array of values. The caller is expected to
+ * know which it is
+ *
  */
 export class AsyncData<D, E = {}> {
   protected status: RemoteDataStatus = RemoteDataStatus.NotAsked;
-  private readonly data: ReadonlyArray<D>;
-  private readonly error: E;
+  private readonly internal: Either<E, ReadonlyArray<D>>;
 
   private constructor({
     status,
@@ -26,25 +29,41 @@ export class AsyncData<D, E = {}> {
   }) {
     this.status = status;
     if (data) {
-      this.data = Object.freeze(data);
+      this.internal = Either.right(data);
     }
     if (error) {
-      this.error = error;
+      this.internal = Either.left(error);
     }
   }
 
+  /**
+   * Create an instance of this type that indicates that the request for async data
+   * has not yet been made
+   */
   static notAsked<D, E = {}>() {
     return new AsyncData<D, E>({
       status: RemoteDataStatus.NotAsked,
     });
   }
 
+  /**
+   * Create an instance of this type that indicates that a request is in flight but has not
+   * yet completed
+   */
   static loading<D, E = {}>() {
     return new AsyncData<D, E>({
       status: RemoteDataStatus.Loading,
     });
   }
 
+  /**
+   * Create an instance of this type that indicates that some data has been returned by the request.
+   *
+   * NB: There is nothing here that asserts that the request is complete. This factory method can
+   * be called multiple times to indicate loading data in progress.
+   *
+   * @param data
+   */
   static loaded<D, E = {}>(data: D[]) {
     return new AsyncData<D, E>({
       status: RemoteDataStatus.Success,
@@ -52,6 +71,10 @@ export class AsyncData<D, E = {}> {
     });
   }
 
+  /**
+   * Create an instance of this type that indicates that the requests has errored.
+   * @param error
+   */
   static errored<D, E = {}>(error: E) {
     return new AsyncData<D, E>({
       status: RemoteDataStatus.Failure,
@@ -59,46 +82,80 @@ export class AsyncData<D, E = {}> {
     });
   }
 
+  /**
+   * Check the status of the data request
+   *
+   * @param status
+   */
   is(status: RemoteDataStatus) {
     return this.status === status;
   }
 
+  /**
+   * Check whether any data has loaded (or that the request has failed)
+   */
   isLoaded() {
     return (
       this.status === RemoteDataStatus.Success || this.status === RemoteDataStatus.Failure
     );
   }
 
+  /**
+   * Checks whether the data that was loaded is empty.
+   *
+   * This will throw an error if the data is not loaded yet
+   *
+   * @throws {NoSuchElementException}
+   */
   isEmpty() {
     const value = this.value();
     return value.length === 0 || (value.length === 1 && value[0] === null);
   }
 
+  /**
+   * Checks whether the data is loaded and has the provided `value`.
+   *
+   * This treats the `AsyncData` as single-valued
+   *
+   * @param value
+   */
   hasValue(value: D) {
     return this.isLoaded() && this.singleValue() === value;
   }
 
+  /**
+   *
+   */
   value(): ReadonlyArray<D> {
     if (this.status === RemoteDataStatus.Success) {
-      return this.data;
+      return this.internal.getRight();
     }
 
     throw new Error('Trying to access RemoteData before it is ready');
   }
 
+  /**
+   *
+   */
   singleValue(): D {
     if (this.status === RemoteDataStatus.Success) {
-      if (this.data.length !== 1) {
+      if (this.internal.getRight().length !== 1) {
         throw new Error('Data is not single-valued');
       }
-      return this.data[0];
+      return this.internal.getRight()[0];
     }
 
     throw new Error('Trying to access RemoteData before it is ready');
   }
 
+  /**
+   *
+   */
   getOptional(): Optional<D> {
-    return Optional.of(this.data ? this.data[0] : undefined);
+    return this.internal.map(
+      () => Optional.empty<D>(),
+      d => Optional.of(d[0])
+    );
   }
 
   map<U>(
@@ -113,10 +170,10 @@ export class AsyncData<D, E = {}> {
     }
 
     if (this.status === RemoteDataStatus.Failure) {
-      return AsyncData.errored<U, E>(this.error);
+      return AsyncData.errored<U, E>(this.internal.getLeft());
     }
 
-    return AsyncData.loaded(this.data.map(callbackfn));
+    return AsyncData.loaded(this.internal.getRight().map(callbackfn));
   }
 
   mapValue<U>(
@@ -137,10 +194,10 @@ export class AsyncData<D, E = {}> {
     }
 
     if (this.status === RemoteDataStatus.Failure) {
-      return AsyncData.errored<D, E>(this.error);
+      return AsyncData.errored<D, E>(this.internal.getLeft());
     }
 
-    return AsyncData.loaded(this.data.filter(callbackfn));
+    return AsyncData.loaded(this.internal.getRight().filter(callbackfn));
   }
 
   reduce<U>(
@@ -161,10 +218,10 @@ export class AsyncData<D, E = {}> {
     }
 
     if (this.status === RemoteDataStatus.Failure) {
-      return AsyncData.errored<U, E>(this.error);
+      return AsyncData.errored<U, E>(this.internal.getLeft());
     }
 
-    return AsyncData.loaded<U, E>([this.data.reduce<U>(callbackfn, initialValue)]);
+    return AsyncData.loaded<U, E>([this.internal.getRight().reduce<U>(callbackfn, initialValue)]);
   }
 
   find(
@@ -216,7 +273,6 @@ export class AsyncData<D, E = {}> {
     return this.filter((_, i) => i !== index);
   }
 
-  // noinspection JSUnusedGlobalSymbols
   all(predicate: (value: D, index: number, array: D[]) => boolean): boolean {
     return this.every(predicate);
   }
