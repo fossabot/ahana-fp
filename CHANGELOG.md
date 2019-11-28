@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.1.0...v1.2.0) (2019-11-28)
+
+
+### Features
+
+* 🎸 allow the use of a custom comparator for `equals` ([a4ff228](https://github.com/ohana-pediatrics/ahana-fp/commit/a4ff228eb2cb98dfdf9c986686bc06be437b5c9c))
+
 ## [1.1.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.0.8...v1.1.0) (2019-11-26)
 
 ### [1.0.8](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.0.7...v1.0.8) (2019-11-26)
