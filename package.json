@@ -4,6 +4,9 @@
   "description": "FP-friendly classes for Typescript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
   "private": false,
   "scripts": {
     "build": "tsc",
@@ -21,6 +24,7 @@
   ],
   "author": "Dan Rumney <dan.rumney@ahanapediatrics.com>",
   "license": "MIT",
+  "repository": "github:ohana-pediatrics/ahana-fp",
   "devDependencies": {
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
