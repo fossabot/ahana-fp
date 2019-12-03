@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.3.1...v2.0.0) (2019-12-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Returns a `Promise<T>` instead of a `T` on `getValue`
+
+### improvement
+
+* make Lazy return Promises ([9b9b23d](https://github.com/ohana-pediatrics/ahana-fp/commit/9b9b23d8323b8115cf3ee93c68039744532c4616))
+
 ### [1.3.1](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.3.0...v1.3.1) (2019-12-03)
 
 
