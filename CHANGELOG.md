@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.2.2...v1.3.0) (2019-12-03)
+
+
+### Features
+
+* 🎸 add Lazy<T> type ([0ed8748](https://github.com/ohana-pediatrics/ahana-fp/commit/0ed8748e49d1a999a26fcc827ce23f5e458a20a4))
+
+
+### Bug Fixes
+
+* 🐛 remove auto release on master ([8788cbf](https://github.com/ohana-pediatrics/ahana-fp/commit/8788cbfebdb2834cde5c84a8a4b3b59fb745d27c))
+
 ### [1.2.2](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.2.1...v1.2.2) (2019-11-28)
 
 ### [1.2.1](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.2.0...v1.2.1) (2019-11-28)
