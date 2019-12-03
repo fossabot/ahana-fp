@@ -3,6 +3,7 @@ import {Optional} from './Optional';
 export * from './Optional';
 export * from './AsyncData';
 export * from './Either';
+export * from './Lazy';
 
 /**
  * Take a function that requires a value of `T` and return a version that takes `Optional<T>`
