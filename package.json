@@ -13,6 +13,9 @@
     "release": "standard-version",
     "lint": "tslint -p tsconfig.json",
     "postversion": "git push && git push --tags",
+    "prettier:cli": "prettier \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
@@ -52,6 +55,7 @@
     }
   },
   "dependencies": {
+    "prettier": "^1.19.1",
     "standard-version": "^7.0.1"
   },
   "nyc": {
