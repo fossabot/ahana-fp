@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.0.0...v2.0.1) (2019-12-06)
+
+
+### Bug Fixes
+
+* 🐛 correct the way that AsyncData provides an Optional ([6c94753](https://github.com/ohana-pediatrics/ahana-fp/commit/6c947531730298e8aa6a92e130d93133157f473d))
+
 ## [2.0.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v1.3.1...v2.0.0) (2019-12-03)
 
 
