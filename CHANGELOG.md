@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.0.1...v2.1.0) (2020-01-06)
+
+
+### Features
+
+* add `partial` and `partialRight` functions ([3759d2b](https://github.com/ohana-pediatrics/ahana-fp/commit/3759d2b0f7a624fd08abae7da3dcd3adbb70813d))
+
 ### [2.0.1](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.0.0...v2.0.1) (2019-12-06)
 
 
