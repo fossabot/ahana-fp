@@ -31,8 +31,12 @@ describe('AsyncData', () => {
 
     it('can be converted to an Optional if there is data', async () => {
       const async = AsyncData.loaded<string>(['test']);
-      console.log(async.getOptional());
       expect(async.getOptional().get()).to.equal('test');
+    });
+
+    it('can be converted to an Optional array if there is data', async () => {
+      const async = AsyncData.loaded<string>(['test']);
+      expect(async.getAllOptional().get()).to.deep.equal(['test']);
     });
 
     it('can be converted to an empty Optional if there is an error', async () => {

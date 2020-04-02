@@ -160,6 +160,14 @@ export class AsyncData<D, E = {}> {
       : Optional.empty<D>();
   }
 
+  getAllOptional(): Optional<readonly D[]> {
+    return this.status === RemoteDataStatus.Failure
+      ? Optional.empty<D[]>()
+      : this.status === RemoteDataStatus.Success
+      ? Optional.of(this.internal.getRight())
+      : Optional.empty<D[]>();
+  }
+
   /**
    * Standard response for mapping this AsyncData to a new one
    * when no data is loaded
