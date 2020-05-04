@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.3](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.2...v2.2.3) (2020-05-04)
+
+
+### Bug Fixes
+
+* 🐛 ensure overloading types in Either are declared ([03f9ba1](https://github.com/ohana-pediatrics/ahana-fp/commit/03f9ba1fa7951d0610985aac1ad4e23298372400))
+
 ### [2.2.2](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.1...v2.2.2) (2020-05-04)
 
 
