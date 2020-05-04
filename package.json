@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc",
     "release": "standard-version",
+    "prerelease": "npm run prepare",
     "lint": "eslint -c .eslintrc.js --ext .ts src",
     "postversion": "git push && git push --tags",
     "prettier:cli": "prettier \"src/**/*.ts\" \"src/**/*.tsx\"",

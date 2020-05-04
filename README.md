@@ -13,3 +13,12 @@ Put another way, in a purely FP language, the set of functions F that can operat
 Well, me. I don't think this definition should cause anyone by the most hardened purist any real concern.
 
 Implementing these in a purely FP style would still result in the functions being packaged someway, probably in some kind of namespace. This is just another way to manage this.
+
+## Releasing a new version
+
+If you're able to release new version, you should do:
+
+```
+npm run release
+git push && git push --tags
+```
