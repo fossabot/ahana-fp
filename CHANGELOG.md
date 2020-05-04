@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.4](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.3...v2.2.4) (2020-05-04)
+
+
+### Bug Fixes
+
+* 🐛 resolve build errors ([c64d518](https://github.com/ohana-pediatrics/ahana-fp/commit/c64d51874576df98ee2d28f67c2d3f8d772f57f1))
+
 ### [2.2.3](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.2...v2.2.3) (2020-05-04)
 
 
