@@ -229,8 +229,7 @@ export class AsyncData<D, E = {}> {
 
   find(
     predicate: (value: D, index: number, obj: ReadonlyArray<D>) => boolean,
-    // tslint:disable-next-line:no-any
-    thisArg?: any
+    thisArg?: unknown
   ): D | undefined {
     if (this.status !== RemoteDataStatus.Success) {
       throw new Error('Trying to access RemoteData before it is ready');
@@ -241,8 +240,7 @@ export class AsyncData<D, E = {}> {
 
   findIndex(
     predicate: (value: D, index: number, obj: ReadonlyArray<D>) => boolean,
-    // tslint:disable-next-line:no-any
-    thisArg?: any
+    thisArg?: unknown
   ) {
     return this.value().findIndex(predicate, thisArg);
   }

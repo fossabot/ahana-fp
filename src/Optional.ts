@@ -67,6 +67,8 @@ export class Optional<T> {
    *
    * @param mapper
    */
+  map<O>(mapper: (v: T) => Optional<O>): Optional<O>;
+  map<U>(mapper: (v: T) => U | undefined | null): Optional<U>;
   map<U>(mapper: (v: T) => U | undefined | null): Optional<U> {
     if (haveValue(this.value)) {
       const result = mapper(this.value);

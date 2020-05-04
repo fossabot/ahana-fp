@@ -81,6 +81,11 @@ export class Either<L, R> {
    * @param lFunc
    * @param rFunc
    */
+  public map<O>(lFunc: (val: L) => O, rFunc: (val: R) => Optional<O>): O;
+  public map<O>(
+    lFunc: (val: L) => O | Optional<O>,
+    rFunc: (val: R) => O | Optional<O>
+  ): O;
   public map<T>(lFunc: (val: L) => T, rFunc: (val: R) => T): T {
     return this.left.map(lFunc).orElseGet(() => this.right.map(rFunc).get());
   }
@@ -93,6 +98,7 @@ export class Either<L, R> {
    *
    * @param lFunc
    */
+  public mapLeft<O>(lFunc: (val: L) => Optional<O>): Either<O, R>;
   public mapLeft<T>(lFunc: (val: L) => T): Either<T, R> {
     return new Either(this.left.map(lFunc), this.right);
   }
@@ -105,6 +111,7 @@ export class Either<L, R> {
    *
    * @param rFunc
    */
+  public mapRight<O>(rFunc: (val: R) => Optional<O>): Either<L, O>;
   public mapRight<T>(rFunc: (val: R) => T): Either<L, T> {
     return new Either(this.left, this.right.map(rFunc));
   }

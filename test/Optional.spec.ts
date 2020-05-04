@@ -36,4 +36,20 @@ describe('Optional', () => {
       ).to.be.true;
     });
   });
+  describe('#map', () => {
+    it('maps one Optional to another', () => {
+      expect(
+        Optional.of(1)
+          .map(x => x + 3)
+          .get()
+      ).to.equal(4);
+    });
+    it('maps while squashing internal Optionals', () => {
+      expect(
+        Optional.of(1)
+          .map(x => Optional.of(x + 3))
+          .get()
+      ).to.equal(4);
+    });
+  });
 });
