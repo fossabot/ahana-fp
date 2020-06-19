@@ -17,6 +17,24 @@ describe('Optional', () => {
       expect(data.isPresent()).to.be.false;
     });
   });
+  describe('#orElse', () => {
+    it('returns the internal value if set', () =>
+      expect(Optional.of(2).orElse(3)).to.equal(2));
+    it('returns the orElse value if not set', () =>
+      expect(Optional.empty().orElse(3)).to.equal(3));
+  });
+  describe('#orNothing', () => {
+    it('returns the internal value if set', () =>
+      expect(Optional.of(2).orNothing()).to.equal(2));
+    it('returns undefined value if not set', () =>
+      expect(Optional.empty().orNothing()).to.be.undefined);
+  });
+  describe('#orNull', () => {
+    it('returns the internal value if set', () =>
+      expect(Optional.of(2).orNull()).to.equal(2));
+    it('returns null value if not set', () =>
+      expect(Optional.empty().orNull()).to.be.null);
+  });
   describe('#equals', () => {
     it('compares two Optionals with identical values as equal', () => {
       expect(Optional.of(1).equals(Optional.of(1))).to.be.true;
@@ -80,6 +98,36 @@ describe('Optional', () => {
           .filter(x => true)
           .isPresent()
       ).to.be.false;
+    });
+  });
+  describe('#toJSON', () => {
+    it('returns undefined when JSON stringified', () => {
+      const data = Optional.empty();
+      expect(JSON.stringify(data)).to.be.undefined;
+      expect(JSON.stringify({data})).to.equal('{}');
+    });
+    it('returns correct JSON  stringified', () => {
+      expect(JSON.stringify(Optional.of(1))).to.equal('1');
+      expect(JSON.stringify(Optional.of(true))).to.equal('true');
+      expect(JSON.stringify(Optional.of('test'))).to.equal('"test"');
+      expect(JSON.stringify(Optional.of(null))).to.equal(undefined);
+      expect(JSON.stringify(Optional.of({}))).to.equal('{}');
+    });
+    it('handles nested optionals when stringified', () => {
+      expect(
+        JSON.stringify(
+          Optional.of({
+            a: Optional.empty(),
+          })
+        )
+      ).to.equal('{}');
+      expect(
+        JSON.stringify(
+          Optional.of({
+            a: Optional.of(1),
+          })
+        )
+      ).to.equal('{"a":1}');
     });
   });
 });

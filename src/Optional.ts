@@ -217,4 +217,11 @@ export class Optional<T> {
     }
     return Optional.empty<S>();
   }
+
+  toJSON() {
+    if (haveValue(this.value)) {
+      return this.value;
+    }
+    return undefined;
+  }
 }
