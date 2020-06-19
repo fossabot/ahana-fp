@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.4...v2.3.0) (2020-06-19)
+
+
+### Features
+
+* 🎸 add support for JSON ([79557f2](https://github.com/ohana-pediatrics/ahana-fp/commit/79557f2a32d97fcd12fbf92eca96e282418a87c7))
+
 ### [2.2.4](https://github.com/ohana-pediatrics/ahana-fp/compare/v2.2.3...v2.2.4) (2020-05-04)
 
 
